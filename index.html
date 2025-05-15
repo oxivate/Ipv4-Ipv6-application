@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IP Lookup Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 { text-align: center; }
+        .result, .error {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .result { background-color: #e0ffe0; }
+        .error { background-color: #ffe0e0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Public IP & Geolocation Lookup</h1>
+        <form method="POST" action="/lookup">
+            <label>Select IP Type:</label>
+            <select name="ip_type">
+                <option value="ipv4">IPv4</option>
+                <option value="ipv6">IPv6</option>
+            </select><br><br>
+
+            <label>Or enter a custom IP:</label><br>
+            <input type="text" name="custom_ip" placeholder="Optional custom IP"><br><br>
+
+            <button type="submit">Lookup</button>
+        </form>
+
+        {% if error %}
+            <div class="error">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+
+        {% if ip %}
+            <div class="result">
+                <h3>IP Address: {{ ip }}</h3>
+                <p><strong>Country:</strong> {{ info.country }}</p>
+                <p><strong>City:</strong> {{ info.city }}</p>
+                <p><strong>Latitude:</strong> {{ info.lat }}</p>
+                <p><strong>Longitude:</strong> {{ info.lon }}</p>
+                <p><strong>ISP:</strong> {{ info.org }}</p>
+                <p><strong>ASN:</strong> {{ info.as }}</p>
+                <p><strong>Country Code:</strong> {{ info.countryCode }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
