@@ -24,8 +24,7 @@ jobs:
           python -m venv .venv
           source .venv/bin/activate
           pip install --upgrade pip
-          # Ajusta si tienes un requirements.txt, o instala pytest/typer si no lo usas
-          pip install requests typer
+          pip install -r requirements.txt
 
       - name: Run unit tests
         run: |
