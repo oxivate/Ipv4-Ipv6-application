@@ -2,8 +2,9 @@ name: Publish Release
 
 on:
   push:
-    tags:
-      - 'v0.0.2'
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-release:
