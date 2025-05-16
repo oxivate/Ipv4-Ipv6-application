@@ -23,6 +23,7 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
 
     - name: Build distributions
+      if: hashFiles('setup.py') != ''
       run: |
         python setup.py sdist bdist_wheel
 
